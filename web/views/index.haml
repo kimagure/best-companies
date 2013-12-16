@@ -1,0 +1,92 @@
+%div#page
+
+%script#welcome-template{"type" => "text/template"}
+  %div.jumbotron.background_image_1.welcome
+    %div.container
+      %div.row
+        %div.col-md-6          
+          %h1
+            Find the best software teams in the DC area.
+
+          %p
+            Great engineering teams want to see your GitHub account before your resume.  So if you're looking for the best teams to work for, start here.
+
+          %div
+            %a#companies_btn.btn.btn-lg.btn-primary(href="/companies")
+              See the companies
+
+  %div.jumbotron.about
+    %div.container
+      %div.row
+        %div.col-md-5
+          %img.thumbnail(src="https://0.gravatar.com/avatar/71ceb111c4114b34d9c9f7bf222cbae9?s=400")
+        %div.col-md-7
+          %h2#about
+            Who made this?
+          %p
+            Hi there, I'm Jen, an experienced architect and full-stack web developer.  I've been scouring GitHub to find the best software teams in the DC area - so I can join them!
+
+          %ul#connect-list.list-unstyled
+            %li
+              %a(href="http://www.github.com/jrullmann")
+                See my code on GitHub
+            %li
+              %a(href="http://www.twitter.com/jrullmann")
+                Follow me on Twitter
+            %li
+              %a(href="http://www.linkedin.com/in/jenniferrullmann")
+                Connect with me on LinkedIn
+
+  %div.jumbotron.how_it_works
+    %div.container
+      %div.row
+        %h2#how_it_works
+          How are the companies ranked?
+        %p
+          This app scours GitHub to find coders in DC, Virginia, and Maryland, chooses the top 1,000 according to how many public repositories they have, and groups them by their companies.
+        %p
+          This algorithm is particurly vulnerable to bad or complete data.  Both the location and company information is optional and free-form, so the algorithm will miss some great coders. But hey, it's better than shifting through job listing sites!
+
+  %div.container.code
+    %div.row
+      %h2#code
+        Where's the code?
+        %p
+          GitHub, very soon!
+
+%script#app-template{"type" => "text/template"}
+  %div.container
+    %div#app
+      %h1
+        Best DC Companies
+      %ul#company-list.list-group
+
+%script#company-template{"type" => "text/template"}
+  %h2
+    <%= _id %>
+    %span.badge
+      <%= users_count %>
+  %div.details_toggle
+    %span.glyphicon.glyphicon-chevron-down
+  %ul#user-list.list-unstyled
+
+%script#user-template{"type" => "text/template"}  
+  %div.row
+    %div.col-md-2
+      <img src="https://0.gravatar.com/avatar/<%= gravatar_id %>?s=120"></img>
+    %div.col-md-6
+      %h3
+        <%= name %>
+      %div
+        <a href="http://www.github.com/<%= login %>" target="_blank"><%= login %></a>
+      %div
+        %span.glyphicon.glyphicon-map-marker        
+        <%= location %>
+      %div
+        %span.glyphicon.glyphicon-link
+        <a href="<%= blog %>" target="_blank"><%= blog %></a>
+    %div.col-md-4
+      %div
+        <%= public_repos %> Repos
+      %div
+        <%= followers %> Followers

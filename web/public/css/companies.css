@@ -1,0 +1,31 @@
+body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: 'Lato', sans-serif;
+}
+
+.jumbotron {
+  font-weight: 400;
+}
+
+.details_toggle .glyphicon {
+  margin: auto;
+  display: block;
+}
+
+.background-image {
+  background-size: cover;
+  background-position: right bottom;
+}
+
+.background_image_1 {
+  background-image: url('/images/desk.jpg');
+  background-size: cover;
+  background-position: center right;
+}
+
+.about {
+  background-color: white;
+}
+
+.welcome {
+  color: white;
+}
