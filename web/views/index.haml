@@ -15,6 +15,16 @@
             %a#companies_btn.btn.btn-lg.btn-primary(href="/companies")
               See the companies
 
+  %div.jumbotron.how_it_works
+    %div.container
+      %div.row
+        %h2#how_it_works
+          How are the companies ranked?
+        %p
+          This app scours GitHub to find coders in DC, Virginia, and Maryland, chooses the top 1,000 according to how many public repositories they have, and groups them by their companies.
+        %p
+          This algorithm is particurly vulnerable to bad or complete data.  Both the location and company information is optional and free-form, so the algorithm will miss some great coders. But hey, it's better than shifting through job listing sites!
+
   %div.jumbotron.about
     %div.container
       %div.row
@@ -36,16 +46,6 @@
             %li
               %a(href="http://www.linkedin.com/in/jenniferrullmann")
                 Connect with me on LinkedIn
-
-  %div.jumbotron.how_it_works
-    %div.container
-      %div.row
-        %h2#how_it_works
-          How are the companies ranked?
-        %p
-          This app scours GitHub to find coders in DC, Virginia, and Maryland, chooses the top 1,000 according to how many public repositories they have, and groups them by their companies.
-        %p
-          This algorithm is particurly vulnerable to bad or complete data.  Both the location and company information is optional and free-form, so the algorithm will miss some great coders. But hey, it's better than shifting through job listing sites!
 
   %div.container.code
     %div.row
