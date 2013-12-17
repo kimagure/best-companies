@@ -17,21 +17,23 @@ var app = app || {};
 
   // The DOM element for a company item...
   app.CompanyView = Backbone.View.extend({
-    tagName:  "li",
+    tagName:  "a",
 
     attributes: {
-      "class": "list-group-item"
+      "class": "list-group-item details_toggle",
+      "href": ""
     },
 
     template: _.template($('#company-template').html()),
 
     events: {
-      "click .details_toggle" : "toggleDetails"
+      "click" : "toggleDetails"
     },
 
     // Re-render the contents of the company item.
     render: function() {
       $(this.el).html(this.template(this.model.toJSON()));
+      $(this.el).attr("href", "#" + this.model.get("_id"));
       return this;
     },
 
@@ -48,7 +50,6 @@ var app = app || {};
           user_list_elem.append(view.render().el);
         });
       } else {
-        this.$(".glyphicon-chevron-up").removeClass("glyphicon-chevron-up").addClass("glyphicon-chevron-down");
         user_list_elem.empty();
       }
     }

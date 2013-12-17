@@ -59,15 +59,13 @@
     %div#app
       %h1
         Best DC Companies
-      %ul#company-list.list-group
+      %div#company-list.list-group
 
 %script#company-template{"type" => "text/template"}
   %h2
     <%= _id %>
     %span.badge
       <%= users_count %>
-  %div.details_toggle
-    %span.glyphicon.glyphicon-chevron-down
   %ul#user-list.list-unstyled
 
 %script#user-template{"type" => "text/template"}  
