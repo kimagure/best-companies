@@ -73,9 +73,11 @@ var app = app || {};
   app.AppView = Backbone.View.extend({
     template: _.template($('#app-template').html()),
 
+    statsTemplate: _.template($('#stats-template').html()),
+
     initialize: function () {
-      this.listenTo(app.companies, 'add', this.addOne);
-      this.listenTo(app.companies, 'reset', this.addAll);
+      this.listenTo(app.companies, 'reset', this.addAllCompanies);
+      this.listenTo(app.users, 'reset', this.addAllUsers);
       app.companies.fetch({reset: true});
       app.users.fetch({reset: true});
       this.render();
@@ -93,9 +95,20 @@ var app = app || {};
       }
     },
 
-    addAll: function () {
+    addAllCompanies: function () {
       this.$('#company-list').html('');
       app.companies.each(this.addOne, this);
+      $('#stats').html(this.statsTemplate({
+        company_count: app.companies.length,
+        user_count: app.users.length
+      }));
+    },
+
+    addAllUsers: function () {
+      $('#stats').html(this.statsTemplate({
+        company_count: app.companies.length,
+        user_count: app.users.length
+      }));
     }
   });
 })(jQuery);

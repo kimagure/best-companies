@@ -25,7 +25,7 @@
         %p
           This algorithm is particurly vulnerable to bad or incomplete data.  Both the location and company information is optional and free-form, so the algorithm will miss some great coders. But hey, it's better than shifting through job listing sites!
 
-  %div.jumbotron.about
+  %div.jumbotron.about.background_color_1
     %div.container
       %div.row
         %div.col-md-5
@@ -39,13 +39,16 @@
           %ul#connect-list.list-unstyled
             %li
               %a(href="http://www.github.com/jrullmann")
-                See my code on GitHub
+                %button.btn
+                  See my code on GitHub
             %li
               %a(href="http://www.twitter.com/jrullmann")
-                Follow me on Twitter
+                %button.btn
+                  Follow me on Twitter
             %li
               %a(href="http://www.linkedin.com/in/jenniferrullmann")
-                Connect with me on LinkedIn
+                %button.btn
+                  Connect with me on LinkedIn
 
   %div.container.code
     %div.row
@@ -55,11 +58,14 @@
           On GitHub, of course!
 
 %script#app-template{"type" => "text/template"}
-  %div.container
-    %div#app
-      %h1
-        Best DC Companies
-      %div#company-list.list-group
+  %div.background_color_1
+    %div.container
+      %div.header
+        %h1
+          Best DC Companies
+        %div#stats
+      %div#app
+        %div#company-list.list-group
 
 %script#company-template{"type" => "text/template"}
   %h2
@@ -68,23 +74,29 @@
       <%= users_count %>
   %ul#user-list.list-unstyled
 
-%script#user-template{"type" => "text/template"}  
-  %div.row
+%script#user-template{"type" => "text/template"}
+  %div.row.user
     %div.col-md-2
       <img src="https://0.gravatar.com/avatar/<%= gravatar_id %>?s=120"></img>
     %div.col-md-6
-      %h3
+      %h3.name
         <%= name %>
-      %div
+      %div.username
         <a href="http://www.github.com/<%= login %>" target="_blank"><%= login %></a>
-      %div
+      %div.location
         %span.glyphicon.glyphicon-map-marker        
         <%= location %>
-      %div
+      %div.link
         %span.glyphicon.glyphicon-link
         <a href="<%= blog %>" target="_blank"><%= blog %></a>
     %div.col-md-4
-      %div
+      %div.repos
         <%= public_repos %> Repos
-      %div
+      %div.followers
         <%= followers %> Followers
+
+%script#stats-template{"type" => "text/template"}
+  %span#company_count
+    <%= company_count %> companies
+  %span#user_count
+    <%= user_count %> users
