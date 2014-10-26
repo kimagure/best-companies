@@ -42,5 +42,10 @@ popular_va_items.each {|item|
         "updated_at" => user.updated_at,
         "public_gists" => user.public_gists
     }
-    mongo_users.insert(doc)
+    result = mongo_users.update(
+        { id: user.id },
+        { '$set' => doc },
+        { upsert: true }
+    )
+    puts result
 }
