@@ -25,6 +25,7 @@ popular_va_items.each {|item|
     doc = {
         "login" => user.login,
         "id" => user.id,
+        "avatar_url" => user.rels[:avatar].href,
         "gravatar_id" => user.gravatar_id,
         "type" => user.type,
         "site_admin" => user.site_admin,
