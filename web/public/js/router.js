@@ -8,9 +8,12 @@ var app = app || {};
       'companies': function() {
         new app.AppView();
       },
-      '':  function() {
+      'about':  function() {
         new app.WelcomeView();
-      }
+      },
+      '': function() {
+        new app.AppView();
+      },
     }
   });
 
