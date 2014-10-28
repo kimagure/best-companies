@@ -74,7 +74,11 @@
     <%= _id %>
     %span.badge
       <%= users_count %>
+    %div.avatar-list.list-group.list-horizontal
   %ul#user-list.list-unstyled
+
+%script#avatar-template{"type" => "text/template"}
+  <img class="avatar" src="<%= avatar_url %>"></img>
 
 %script#user-template{"type" => "text/template"}
   %div.row.user

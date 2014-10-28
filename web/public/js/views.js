@@ -34,7 +34,18 @@ var app = app || {};
     render: function() {
       $(this.el).html(this.template(this.model.toJSON()));
       $(this.el).attr("href", "#" + this.model.get("_id"));
+      this.addAvatars();
       return this;
+    },
+
+    addAvatars: function() {
+      var $avatar_list = this.$('.avatar-list');
+      var avatar_template = _.template($('#avatar-template').html());
+      $avatar_list.html('');
+
+      $(this.model.get('user_avatars')).each(function(index, avatar) {
+        $avatar_list.append(avatar_template(avatar));
+      });
     },
 
     // Add a details section to this list item
@@ -43,6 +54,7 @@ var app = app || {};
       this.closed = !this.closed;
 
       if(this.closed) {
+        this.$('.avatar-list').empty();
         this.$(".glyphicon-chevron-down").removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-up");
         var company_users = app.users.where({company: this.model.get('_id')});
         _.each(company_users, function(company) {
@@ -51,6 +63,7 @@ var app = app || {};
         });
       } else {
         user_list_elem.empty();
+        this.addAvatars();
       }
     }
   });

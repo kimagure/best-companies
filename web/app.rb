@@ -10,8 +10,10 @@ get '/api/companies' do
     {"$group" => 
       {
         _id: "$company",
-        users_count: {"$sum" => 1}}
-      },
+        user_avatars: {"$push" => { avatar_url: "$avatar_url"}},
+        users_count: {"$sum" => 1}
+      }
+    },
     {"$sort" => {users_count: -1}},
   ]).find
   companies.to_a.to_json
