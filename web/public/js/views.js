@@ -116,10 +116,8 @@ var app = app || {};
     },
 
     addOne: function (company) {
-      if(company.get('_id')) {
-        var view = new app.CompanyView({ model: company });
-        $('#company-list').append(view.render().el);
-      }
+      var view = new app.CompanyView({ model: company });
+      $('#company-list').append(view.render().el);
     },
 
     addAllCompanies: function () {

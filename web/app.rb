@@ -7,6 +7,8 @@ DB = Mongo::Connection.new.db("best-companies")
 
 get '/api/companies' do
   companies = DB.collection("users").aggregate([
+    {"$match" => {company: {"$ne" => nil}}},
+    {"$match" => {company: {"$ne" => ""}}},
     {"$group" => 
       {
         _id: "$company",
