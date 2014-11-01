@@ -54,7 +54,10 @@ var app = app || {};
       var template = _.template($('#language-template').html());
       $list.html('');
 
-      $(this.model.get('languages')).each(function(index, language) {
+      var languages = _.sortBy(this.model.get('languages'), function (language) {
+        return -language.count
+      });
+      $(languages).each(function(index, language) {
         $list.append(template(language));
       });
     },
