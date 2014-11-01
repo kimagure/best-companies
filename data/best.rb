@@ -22,6 +22,14 @@ puts "Popular DCMA users total: #{popular_va.total_count} Fetched: #{popular_va_
 mongo_users = db['users']
 popular_va_items.each {|item|
     user = item.rels[:self].get.data
+
+    repos = item.rels[:repos].get.data
+    languages = [].to_set
+
+    repos.each {|repo|
+        languages = languages.merge(repo.rels[:languages].get.data.fields)
+    }
+
     doc = {
         "login" => user.login,
         "id" => user.id,
@@ -41,8 +49,10 @@ popular_va_items.each {|item|
         "following" => user.following,
         "created_at" => user.created_at,
         "updated_at" => user.updated_at,
-        "public_gists" => user.public_gists
+        "public_gists" => user.public_gists,
+        "languages" => languages.to_a()
     }
+
     result = mongo_users.update(
         { id: user.id },
         { '$set' => doc },

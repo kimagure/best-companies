@@ -73,9 +73,14 @@
   %h2
     <%= _id %>
     %span.badge
-      <%= users_count %>
+      <%= users_count %> coders
+    %div.language-list.list-group.list-horizontal
     %div.avatar-list.list-group.list-horizontal
   %ul#user-list.list-unstyled
+
+%script#language-template{"type" => "text/template"}
+  %span.badge
+    <%= count %> <%= language %> coders
 
 %script#avatar-template{"type" => "text/template"}
   <img class="avatar" src="<%= avatar_url %>"></img>

@@ -11,10 +11,37 @@ get '/api/companies' do
       {
         _id: "$company",
         user_avatars: {"$push" => { avatar_url: "$avatar_url"}},
-        users_count: {"$sum" => 1}
+        users_count: {"$sum" => 1},
+        language: {"$push" => "$languages"},
       }
     },
-    {"$sort" => {users_count: -1}},
+    {"$unwind" => "$language"},
+    {"$unwind" => "$language"},
+    {"$group" =>
+      {
+        _id: {
+          "_id" => "$_id",
+          "language" => "$language"
+        },
+        language_count: {"$sum" => 1},
+        user_avatars: { "$first" => "$user_avatars"},
+        users_count: { "$first" => "$users_count"}
+      }
+    },
+    {"$group" =>
+      {
+        _id: "$_id._id",
+        languages: {
+          "$push" => {
+            language: "$_id.language",
+            count: "$language_count"
+          }
+        },
+        user_avatars: { "$first" => "$user_avatars"},
+        users_count: { "$first" => "$users_count"},
+      }
+    },
+    {"$sort" => {users_count: -1}}
   ]).find
   companies.to_a.to_json
 end

@@ -35,6 +35,7 @@ var app = app || {};
       $(this.el).html(this.template(this.model.toJSON()));
       $(this.el).attr("href", "#" + this.model.get("_id"));
       this.addAvatars();
+      this.addLanguages();
       return this;
     },
 
@@ -45,6 +46,16 @@ var app = app || {};
 
       $(this.model.get('user_avatars')).each(function(index, avatar) {
         $avatar_list.append(avatar_template(avatar));
+      });
+    },
+
+    addLanguages: function() {
+      var $list = this.$('.language-list');
+      var template = _.template($('#language-template').html());
+      $list.html('');
+
+      $(this.model.get('languages')).each(function(index, language) {
+        $list.append(template(language));
       });
     },
 
