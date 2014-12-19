@@ -68,19 +68,33 @@
           <br/><a href="/about">Learn more</a>
         %div#stats
       %div#app
+        %div.row
+          %div.col-md-1
+          %div.col-md-5
+            Company
+          %div.col-md-2
+            Coders
+          %div.col-md-4
+            Languages                        
         %div#company-list.list-group
 
 %script#company-template{"type" => "text/template"}
-  %h2
-    <%= index%> <%= _id %>
-    %span.badge
-      <%= users_count %> coders
-    %div.language-list.list-group.list-horizontal
-    %div.avatar-list.list-group.list-horizontal
+  %div.row
+    %div.col-md-1
+      %h2
+        <%= index%>
+    %div.col-md-5
+      %h2
+        <%= _id %>
+    %div.col-md-2
+      <%= users_count %>
+    %div.col-md-4
+      %div.language-list.list-group.list-horizontal
+    %div.col-md-1
   %ul#user-list.list-unstyled
 
 %script#language-template{"type" => "text/template"}
-  %span.badge
+  %p
     <%= count %> <%= language %> coders
 
 %script#avatar-template{"type" => "text/template"}

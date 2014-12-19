@@ -59,6 +59,7 @@ var app = app || {};
       });
       $(languages).each(function(index, language) {
         $list.append(template(language));
+        return index < 2;
       });
     },
 
