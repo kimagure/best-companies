@@ -33,7 +33,7 @@ var app = app || {};
     // Re-render the contents of the company item.
     render: function() {
       $(this.el).html(this.template(this.model.toJSON()));
-      $(this.el).attr("href", "#" + this.model.get("_id"));
+      $(this.el).attr("href", "#" + this.model.get("name"));
       this.addAvatars();
       this.addLanguages();
       return this;
@@ -71,7 +71,7 @@ var app = app || {};
       if(this.closed) {
         this.$('.avatar-list').empty();
         this.$(".glyphicon-chevron-down").removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-up");
-        var company_users = app.users.where({company: this.model.get('_id')});
+        var company_users = app.users.where({company: this.model.get('name')});
         _.each(company_users, function(company) {
           var view = new app.UserView({model: company});
           user_list_elem.append(view.render().el);
